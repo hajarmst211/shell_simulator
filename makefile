@@ -1,7 +1,9 @@
 FLAGS = -Wall -Wextra -ggdb
-run :	
-	gcc $(FLAGS) *.c -o main ; ./main
+all :	
+	gcc $(FLAGS) *.c ./lib/* -o main ; ./main
 
+compile : 
+	gcc $(FLAGS) *.c ./lib/* -o main 
 debug : main
 	gdb ./main
 
