@@ -16,7 +16,9 @@ int main(){
 char * user_input = read_line();
 MyString tmp = my_new_string(user_input);
 MyString* list = parse_string(&tmp);
-printf("first string: %s\n",list->string_proper);
+for(int i = 0 ; i<2 ; i++)
+        printf("first string: %c\n",list->string_proper[i]);
+
 /*
 printf("\nthese are the list elements:\n ");
 while(list){

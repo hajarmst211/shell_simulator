@@ -29,27 +29,20 @@ int list_length(MyString* list){
 
 int append_string_to_list(MyString* list, const MyString* string_to_append)
 {
-    printf("\n we are going to append now:\n");
+    printf("we are going to append now:\n");
     if(string_to_append == NULL){
         return -1;
     }
-    MyString* last_list_pointer;
-
     if(list == NULL){
         list = new_string_list();
-        last_list_pointer = list;
     }
-
     int length = list_length(list);
-    last_list_pointer = list + length;
-    MyString copied_string;
+    *(list+length) = my_copy_string(string_to_append);
 
-    copied_string = my_copy_string(string_to_append);
-    last_list_pointer = &copied_string;
+    //To debug:
+    printf("this is the length: %d\n",length);
+    printf("The element: %s was copied into this pointer %p\n", string_to_append->string_proper, list+length);
 
-
-    printf("this is the end---- the value of the list is: %s \n", last_list_pointer->string_proper);
-    printf("The pointers value is: %p", last_list_pointer);
     return 0;
 }
 

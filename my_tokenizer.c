@@ -22,7 +22,7 @@ MyString* parse_string(MyString* string)
 
         if(string->string_proper[i] == delimiter){
             append_string_to_list(list, &argument);
-            printf("this is the complete  %s\n", argument.string_proper);
+            printf("this is the complete element to be appended %s\n", argument.string_proper);
             my_destroy_string(&argument);
             argument = my_new_string("");
         }
@@ -30,6 +30,7 @@ MyString* parse_string(MyString* string)
             append_string_to_list(list, &argument);
             printf("last element appended %s\n",argument.string_proper );
             my_destroy_string(&argument);
+            break;
         }
 
         else{
