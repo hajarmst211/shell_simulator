@@ -1,9 +1,11 @@
 FLAGS = -Wall -Wextra -ggdb
+SRC = src
+
 all :	
-	gcc $(FLAGS) *.c ./lib/* -o main ; ./main
+	gcc $(FLAGS) $(SRC)/*.c $(SRC)/lib/* -o main ; ./main
 
 compile : 
-	gcc $(FLAGS) *.c ./lib/* -o main 
+	gcc $(FLAGS) $(SRC)/*.c $(SRC)/lib/* -o main 
 debug : main
 	gdb ./main
 

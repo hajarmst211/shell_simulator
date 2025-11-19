@@ -4,10 +4,7 @@
 
 #include <stdlib.h>
 #include "lib/my_string.h"
-#include "lib/my_string.h"
 #include "my_list_string.h"
-#include <stdlib.h>
-
 
 typedef enum 
 {
@@ -31,7 +28,7 @@ typedef enum{
 
 MyString* parse_string(MyString* string);
 
-MyToken* make_token(MyString* string, int token_type);
+MyToken* make_token(MyToken* token, MyString* string, int token_type);
 
 MyToken* new_token_list(void);
 
