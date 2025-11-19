@@ -1,8 +1,6 @@
 // preprocessing.c
 
 #include"my_list_string.h"
-#include "lib/my_string.h"
-
 
 MyString* new_string_list(void)
 {

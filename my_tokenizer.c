@@ -2,11 +2,11 @@
 
 #include "my_tokenizer.h"
 #include "lib/my_string.h"
+#include "my_list_string.h"
 #include <stdlib.h>
 
 MyString* parse_string(MyString* string)
-{
-    //must free the return 
+{//must free the return 
     if(string == NULL){
         return NULL;
     }
@@ -17,26 +17,21 @@ MyString* parse_string(MyString* string)
     int appending_result;
     const char delimiter = ' ';
 
-    for(int i = 0; i < length ; i++){
-        while(string->string_proper[i] != delimiter){
-            my_append_character(&argument, string->string_proper[i]);
-            i++;
+    for(int i = 0 ; i < length ; i++){
+        if(string->string_proper[i] == delimiter){
+            append_string_to_list(list, &argument);
+            my_destroy_string(&argument);
+            argument = my_new_string("");
         }
-        if(argument.size == 1){
-            appending_result = append_literal_to_list(list, argument.string_proper);
-            if(!appending_result){
-                return NULL;
-            }
-        }
+
         else{
-            appending_result = append_string_to_list(list, &argument);
-            if(!appending_result){
+            appending_result = my_append_literal(&argument, &string->string_proper[i]);
+            if(appending_result == 1)
                 return NULL;
-            }
         }
     }
     my_destroy_string(&argument);
-    return list;
+    return list; 
 }
 
 MyToken* make_token(MyString* string, int token_type){

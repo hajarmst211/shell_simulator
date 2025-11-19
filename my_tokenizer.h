@@ -29,17 +29,16 @@ typedef enum{
 
 //my_tokenizer.c
 
-#include "my_tokenizer.h"
-#include "lib/my_string.h"
-#include <stdlib.h>
-
 MyString* parse_string(MyString* string);
 
 MyToken* make_token(MyString* string, int token_type);
 
 MyToken* new_token_list(void);
 
+MyToken* new_token_list(void);
+
 int append_token_to_list(MyToken* list, MyToken* token);
+
 MyToken* parsed_to_tokenized_string(MyString* string_list);
 
 MyToken* my_tokenizer(MyString* input_string);
