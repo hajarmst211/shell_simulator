@@ -4,6 +4,7 @@
 #include "lib/my_string.h"
 #include "my_list_string.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 MyString* parse_string(MyString* string)
 {//must free the return 
@@ -18,19 +19,23 @@ MyString* parse_string(MyString* string)
     const char delimiter = ' ';
 
     for(int i = 0 ; i < length ; i++){
+
         if(string->string_proper[i] == delimiter){
             append_string_to_list(list, &argument);
+            printf("this is the complete  %s\n", argument.string_proper);
             my_destroy_string(&argument);
             argument = my_new_string("");
         }
+        if(string->string_proper[i] == '\n'){
+            append_string_to_list(list, &argument);
+            printf("last element appended %s\n",argument.string_proper );
+            my_destroy_string(&argument);
+        }
 
         else{
-            appending_result = my_append_literal(&argument, &string->string_proper[i]);
-            if(appending_result == 1)
-                return NULL;
+            appending_result = my_append_character(&argument, string->string_proper[i]);
         }
     }
-    my_destroy_string(&argument);
     return list; 
 }
 

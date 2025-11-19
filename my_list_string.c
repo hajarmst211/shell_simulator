@@ -1,6 +1,8 @@
 // preprocessing.c
 
 #include"my_list_string.h"
+#include "lib/my_string.h"
+#include<stdio.h>
 
 MyString* new_string_list(void)
 {
@@ -17,20 +19,30 @@ MyString* new_string_list(void)
 
 int append_string_to_list(MyString* list, const MyString* string_to_append)
 {
-    if(string_to_append == NULL || list == NULL){
+    printf("\n we are going to append now:\n");
+    if(string_to_append == NULL){
         return -1;
     }
-    if(list->capacity <= string_to_append->size ){
-        list =  realloc(list, list->capacity * 2 * sizeof(MyString));
-        if(!list){
-            return 1;
-        }
-        list->capacity *= 2;
+    MyString* tmp_list = list;
+    if(tmp_list->string_proper == NULL)
+    {
+        tmp_list = string_to_append;
+        MyString* next = tmp_list + 1;
+        next = NULL;
+        printf("this is the end---- the value of the list is: %s \n", tmp_list->string_proper);
+        printf("The pointers value is: %p", tmp_list);
+        return 0;
     }
-    while(list){
-        list += 1;
+    
+    while(tmp_list){
+        printf("this is what list is pointing to now: %s\n", tmp_list->string_proper);
+        printf("The pointers value is: %p", tmp_list);
+        tmp_list += 1;
     }
-    list = (MyString*)string_to_append;
+    printf("this is the list after the loop: %s\n", tmp_list->string_proper);
+    tmp_list = string_to_append; 
+    printf("this is the end---- the value of the list is: %s \n", tmp_list->string_proper);
+    printf("The pointers value is: %p", tmp_list);
     return 0;
 }
 
