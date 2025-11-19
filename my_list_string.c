@@ -11,10 +11,20 @@ MyString* new_string_list(void)
     if(!list){
         return NULL;
     }
-    list->string_proper = NULL;
-    list->capacity = 0;
-    list->size = 0;
-    return list;
+    for ( int i = 0 ; i < 10 ; i ++) {
+	    list[i].string_proper = NULL;
+	    list[i].capacity = 0;
+	    list[i].size = 0;
+    }
+    return  list;
+}
+
+int list_length(MyString* list){
+    int length = 0;
+    while(list[length].string_proper != NULL){
+        length++;
+    }
+    return length;
 }
 
 int append_string_to_list(MyString* list, const MyString* string_to_append)
@@ -23,26 +33,23 @@ int append_string_to_list(MyString* list, const MyString* string_to_append)
     if(string_to_append == NULL){
         return -1;
     }
-    MyString* tmp_list = list;
-    if(tmp_list->string_proper == NULL)
-    {
-        tmp_list = string_to_append;
-        MyString* next = tmp_list + 1;
-        next = NULL;
-        printf("this is the end---- the value of the list is: %s \n", tmp_list->string_proper);
-        printf("The pointers value is: %p", tmp_list);
-        return 0;
+    MyString* last_list_pointer;
+
+    if(list == NULL){
+        list = new_string_list();
+        last_list_pointer = list;
     }
-    
-    while(tmp_list){
-        printf("this is what list is pointing to now: %s\n", tmp_list->string_proper);
-        printf("The pointers value is: %p", tmp_list);
-        tmp_list += 1;
-    }
-    printf("this is the list after the loop: %s\n", tmp_list->string_proper);
-    tmp_list = string_to_append; 
-    printf("this is the end---- the value of the list is: %s \n", tmp_list->string_proper);
-    printf("The pointers value is: %p", tmp_list);
+
+    int length = list_length(list);
+    last_list_pointer = list + length;
+    MyString copied_string;
+
+    copied_string = my_copy_string(string_to_append);
+    last_list_pointer = &copied_string;
+
+
+    printf("this is the end---- the value of the list is: %s \n", last_list_pointer->string_proper);
+    printf("The pointers value is: %p", last_list_pointer);
     return 0;
 }
 

@@ -12,7 +12,7 @@ MyString* parse_string(MyString* string)
         return NULL;
     }
 
-    MyString* list = new_string_list();
+    MyString* list = NULL;
     MyString argument = my_new_string("");
     int length = string->size;
     int appending_result;
@@ -26,7 +26,7 @@ MyString* parse_string(MyString* string)
             my_destroy_string(&argument);
             argument = my_new_string("");
         }
-        if(string->string_proper[i] == '\n'){
+        else if(string->string_proper[i] == '\n'){
             append_string_to_list(list, &argument);
             printf("last element appended %s\n",argument.string_proper );
             my_destroy_string(&argument);
