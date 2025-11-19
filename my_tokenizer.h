@@ -37,7 +37,7 @@ MyToken* new_token_list(void);
 
 MyToken* new_token_list(void);
 
-int append_token_to_list(MyToken* list, MyToken* token);
+int append_token_to_list(MyToken* list, MyToken* token, int* list_size);
 
 MyToken* parsed_to_tokenized_string(MyString* string_list);
 

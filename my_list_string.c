@@ -19,35 +19,14 @@ MyString* new_string_list(void)
     return  list;
 }
 
-int list_length(MyString* list){
-    int length = 0;
-    while(list[length].string_proper != NULL){
-        length++;
-    }
-    return length;
-}
 
-int append_string_to_list(MyString* list, const MyString* string_to_append)
-{
-    printf("we are going to append now:\n");
-    if(string_to_append == NULL){
-        return -1;
-    }
-    if(list == NULL){
-        list = new_string_list();
-    }
-    int length = list_length(list);
-    *(list+length) = my_copy_string(string_to_append);
 
-    //To debug:
-    printf("this is the length: %d\n",length);
-    printf("The element: %s was copied into this pointer %p\n", string_to_append->string_proper, list+length);
+int append_string_to_list(MyString* list, const MyString* string_to_append, int *list_size_ptr)
+{   int list_size = *list_size_ptr;
+    MyString string_copy = my_copy_string(string_to_append);
 
+    list[list_size]=string_copy;
+    *list_size_ptr=list_size +1;
     return 0;
 }
 
-int append_literal_to_list(MyString* list, const char* literal_to_append)
-{
-    MyString string_to_append = my_new_string((char*) literal_to_append);
-    return append_string_to_list(list, &string_to_append);
-}

@@ -8,35 +8,24 @@
 
 MyString* parse_string(MyString* string)
 {//must free the return 
-    if(string == NULL){
-        return NULL;
-    }
-
-    MyString* list = NULL;
-    MyString argument = my_new_string("");
+    MyString* list = malloc(10*sizeof(MyString));
+    MyString holder = my_new_string("");
     int length = string->size;
-    int appending_result;
+    int list_size = 0;
     const char delimiter = ' ';
 
     for(int i = 0 ; i < length ; i++){
-
-        if(string->string_proper[i] == delimiter){
-            append_string_to_list(list, &argument);
-            printf("this is the complete element to be appended %s\n", argument.string_proper);
-            my_destroy_string(&argument);
-            argument = my_new_string("");
+        char character = string->string_proper[i];
+        if(character == delimiter){
+            append_string_to_list(list, &holder, &list_size);
+            my_destroy_string(&holder);
+            holder = my_new_string("");
         }
-        else if(string->string_proper[i] == '\n'){
-            append_string_to_list(list, &argument);
-            printf("last element appended %s\n",argument.string_proper );
-            my_destroy_string(&argument);
-            break;
-        }
-
         else{
-            appending_result = my_append_character(&argument, string->string_proper[i]);
+            my_append_character(&holder, character);
         }
     }
+    append_string_to_list(list, &holder, &list_size);
     return list; 
 }
 
@@ -55,42 +44,46 @@ MyToken* make_token(MyString* string, int token_type){
 
 MyToken* new_token_list(void)
 {
-    MyToken* list = malloc(10* sizeof(MyToken));
+    MyToken* list = malloc(10*sizeof(MyToken));
     if(!list){
         return NULL;
     }
-    list->type = -1;
-    list->value = "";
+
+    for(int i = 0; i < 10 ; i++){
+        list[i].type = -1;
+        list[i].value = "";        
+    }
     return list;
 }  
 
-int append_token_to_list(MyToken* list, MyToken* token)
+int append_token_to_list(MyToken* list, MyToken* token, int* list_size)
 {
     if(list == NULL) return 1;
-    while(list){
-        list++;
-    }
-    list = token;
+    list[*list_size].type = token->type;
+    list[*list_size].value = token->value;
+    int tmp = *(list_size) + 1;
+    *list_size = tmp;
+
     return 0;
 }
 
-MyToken* parsed_to_tokenized_string(MyString* string_list)
+MyToken* parsed_to_tokenized_string(MyString* parsed_list)
 {
     int i = 0;
     MyString element;
     MyToken* token;
     MyToken* token_list = new_token_list();
+    int list_size = 0;
 
-    while(string_list){    
-        element = string_list[i];
+    for(int i = 0 ; i < 10 ; i++){    
+        element = parsed_list[i];
         if(i == 0){
             token = make_token(&element , UNIX_COMMAND);
-            append_token_to_list(token_list,token);
         }
         else {
             token = make_token(&element , ARGUMENT);
         }
-        i++;
+        append_token_to_list(token_list,token, &list_size);
     }
     return token_list;
 }
