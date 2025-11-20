@@ -22,12 +22,13 @@ while(1){
         printf(">\n");
         user_input = read_line();
         user_input_string = my_new_string(user_input);
-        tokens = my_tokenizer(&user_input_string);
-        execute(tokens);
 
         if(strcmp(user_input,"exit\n") == 0){
                 exit(0);
         }
+        tokens = my_tokenizer(&user_input_string);
+        execute(tokens);
+
 }
 free(user_input);
 free(tokens);

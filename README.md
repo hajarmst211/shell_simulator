@@ -1,13 +1,13 @@
 #  Informations about the project:
 1. Name of the project: mini shell
 2. Coding language of the project: c
-4. Motivation of the project: Learning and skill developpement purposes
-3. Goal of the project: This project aims to mimic the behavoir of a real unix shell. 
+4. Motivation of the project: Learning and skill development purposes
+3. Goal of the project: This project aims to mimic the behavior of a real unix shell. 
 4. Limitations of the project: To begin with, this project is only supported on linux working machines. Secondly, the shell it provides can only run `execvp` supported commands or any executable file name reachable via a provided path as first argument.
 
 # Detailed description of the project:
 ### Used commands and libraries:
-The project is built over a customized, from scratch string library that groups all teh needed functions to manipulate string type variable. In this fucntion a string is refered to as a `MyString` object and has three atributts: string_propre which is its `char* `value, a size which is the length of the string and a capacity which translates the whole allocated space for that string. <br><p> In addition to some POSIX/UNIX commands such as `execvp`, `fork` and `read`. And of course the standard `stdlib` library for memory allocation managment.
+The project is built over a customized, from scratch string library that groups all teh needed functions to manipulate string type variable. In this function a string is refered to as a `MyString` object and has three attributes: string_propre which is its `char* `value, a size which is the length of the string and a capacity which translates the whole allocated space for that string. <br><p> In addition to some POSIX/UNIX commands such as `execvp`, `fork` and `read`. And of course the standard `stdlib` library for memory allocation management.
 ### Conduction of the project: 
  This project is based on a **repl** algorithm. Which means that it has four main stages: read , evaluate, print and loop. 
 <br><p> The **repl** layout of the project is the following:
