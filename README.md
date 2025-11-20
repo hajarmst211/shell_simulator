@@ -17,7 +17,7 @@ The project is built over a customized, from scratch string library that groups 
 4.**Loop:** Looping through these steps is necessary since it is what a consol does: takes a command, execute it and returns the output. Thus the treatment is infinitely repeated until the user enters `exit` which is the keyword responsible for exiting my `mini_shell`.
 
 # Preview of the mini shell
-![image] (demonstration/demonstration1.png)
+![image](./demonstration/demonstartion1.png)
 
 # Project using instructions:
 - Before using this project, one must make sure he has a unix based operating system and `gcc` installed.
