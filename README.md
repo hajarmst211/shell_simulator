@@ -1,5 +1,5 @@
 #  Informations about the project:
-1. Name of the project: mini shell
+1. Name of the project: shell Simulator
 2. Coding language of the project: c
 4. Motivation of the project: Learning and skill development purposes
 3. Goal of the project: This project aims to mimic the behavior of a real unix shell. 
